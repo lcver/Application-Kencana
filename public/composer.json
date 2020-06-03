@@ -1,0 +1,12 @@
+{
+    "name": "lcver/public",
+    "authors": [
+        {
+            "name": "lcver",
+            "email": "crackover1092@gmail.com"
+        }
+    ],
+    "require": {
+        "almasaeed2010/adminlte": "~3.0"
+    }
+}
