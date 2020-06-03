@@ -48,7 +48,7 @@ define('BASEURL', $base_url);
 define('DBHOST','localhost');
 define('DBUSER','root');
 define('DBPASS','');
-define('DBNAME','learning_mysqli');
+define('DBNAME','');
 
 /**
  * APP PATH
@@ -68,4 +68,4 @@ define('APPPATH', $app_path[0]);
  * 
  * @return Directory
  */
-define('VNDRPATH',APPPATH.'/public/vendor/');
+define('VNDRPATH',APPPATH.'public\vendor\\');
