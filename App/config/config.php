@@ -48,7 +48,7 @@ define('BASEURL', $base_url);
 define('DBHOST','localhost');
 define('DBUSER','root');
 define('DBPASS','');
-define('DBNAME','');
+define('DBNAME','application_kencana');
 
 /**
  * APP PATH
