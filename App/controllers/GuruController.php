@@ -6,7 +6,7 @@ class GuruController extends Controller
 {
     public function __construct()
     {
-        if(!isset($_SESSION['kencana_usersession']))
+        if(!isset($_SESSION['kencana_usersession']) || $_SESSION['kencana_rolesession']!=2)
             header('location:'.BASEURL.'auth');
     }
     public function index()

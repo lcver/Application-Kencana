@@ -13,7 +13,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li>
-        <a href="" class="nav-link">
+        <a href="<?=BASEURL?>auth/logout" class="nav-link">
           <i class="fas fa-power-off"></i>
           Logout
         </a>

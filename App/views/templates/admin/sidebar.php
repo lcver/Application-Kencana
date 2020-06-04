@@ -21,6 +21,7 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
+    <?php if($_SESSION['kencana_rolesession']==5) : ?>
     <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item has-treeview menu-open">
         <a href="#" class="nav-link active">
@@ -547,20 +548,22 @@
         </a>
         </li>
     </ul> -->
-    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-            <a href="<?=BASEURL?>guru" class="nav-link">
-                <i class="nav-icon fas fa-home"> </i>
-                Dashboard
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="<?=BASEURL?>guru/bank_soal" class="nav-link">
-                <i class="nav-icon fas fa-book-open"></i>
-                Bank Soal
-            </a>
-        </li>
-    </ul>
+    <?php elseif($_SESSION['kencana_rolesession']==2) : ?>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+                <a href="<?=BASEURL?>guru" class="nav-link">
+                    <i class="nav-icon fas fa-home"> </i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?=BASEURL?>guru/bank_soal" class="nav-link">
+                    <i class="nav-icon fas fa-book-open"></i>
+                    Bank Soal
+                </a>
+            </li>
+        </ul>
+    <?php endif;?>
     </nav>
     <!-- /.sidebar-menu -->
 </div>

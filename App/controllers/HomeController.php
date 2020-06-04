@@ -6,7 +6,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        if(!isset($_SESSION['kencana_usersession']))
+        if(!isset($_SESSION['kencana_usersession']) || $_SESSION['kencana_rolesession']!=1)
             header('location:'.BASEURL.'auth');
     }
     
