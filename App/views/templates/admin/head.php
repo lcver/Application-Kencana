@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Administration Kencana</title>
+  <title>AdminLTE 3 | Dashboard 2</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/fontawesome-free/css/all.min.css">
@@ -13,9 +13,6 @@
   <link rel="stylesheet" href="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css">
-  <link rel="stylesheet" href="<?=BASEURL?>css/mainstyle.css">
   <!-- Google Font: Source Sans Pro -->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-  <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <div class="wrapper">

@@ -30,8 +30,5 @@
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.js"></script>
-
-<!-- PAGE SCRIPTS -->
-<script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/js/pages/dashboard2.js"></script>
 </body>
 </html>

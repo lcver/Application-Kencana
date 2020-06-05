@@ -1,3 +1,5 @@
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -12,10 +14,10 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li>
+      <li class="nav-item">
         <a href="<?=BASEURL?>auth/logout" class="nav-link">
           <i class="fas fa-power-off"></i>
-          Logout
+          logout
         </a>
       </li>
     </ul>
