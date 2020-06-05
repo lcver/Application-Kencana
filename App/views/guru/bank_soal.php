@@ -9,14 +9,23 @@
                                 <?=Flasher::get();?>
                             </div>
 
-                            <form action="<?=BASEURL?>Admin/arsip_upload" method="post" enctype="multipart/form-data">
+                            <form action="<?=BASEURL?>guru/generate_soal" method="post" enctype="multipart/form-data">
                                 <!-- select -->
                                 <div class="form-group">
                                     <label>Pilih Matapelajaran</label>
-                                    <select name="elenka_mapel" class="form-control">
+                                    <select name="kencana_mapelfile" class="form-control">
                                         <option value="_BLANK_">-- Pilih Matapelajaran --</option>
                                         <?php foreach ($data['mapel'] as $d) : ?>
-                                            <option value="1"><?=$d['pelajaran']?></option>
+                                            <option value="<?=$d['id']?>"><?=$d['mapel']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Pilih Kelas</label>
+                                    <select name="kencana_kelasfile[]" class="form-control" multiple>
+                                        <?php foreach ($data['kelas'] as $d) : ?>
+                                            <option value="<?=$d['id']?>"><?=$d['kelas']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -25,7 +34,7 @@
                                     <label for="elenka_uploadFileSoal">File Upload</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" name="formfile_elenka_uploadsoal" class="custom-file-input" id="elenka_uploadFileSoal">
+                                            <input type="file" name="kencana_soalfile" class="custom-file-input" id="elenka_uploadFileSoal">
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                     </div>

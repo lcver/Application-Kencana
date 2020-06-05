@@ -19,6 +19,9 @@
 <!-- AdminLTE App -->
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/js/adminlte.js"></script>
 
+<!-- bs-custom-file-input -->
+<script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/js/demo.js"></script>
 
@@ -30,5 +33,11 @@
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.js"></script>
+<!-- Custom File Input -->
+<script type="text/javascript">
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+</script>
 </body>
 </html>
