@@ -22,6 +22,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Guru sidebar -->
           <?php if($_SESSION['kencana_rolesession']==2): ?>
             <li class="nav-item">
               <a href="<?=BASEURL?>guru" class="nav-link">
@@ -67,6 +68,43 @@
                 <i class="nav-icon far fa-circle text-info"></i>
                 <p>Informational</p>
               </a>
+            </li>
+          <!-- Tata Usaha sidebar -->
+          <?php elseif($_SESSION['kencana_rolesession']==3) : ?>
+            <li class="nav-item">
+              <a href="<?=BASEURL?>administration" class="nav-link">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview menu-open">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-alt"></i>
+                <p>
+                  Tambah User
+                </p>
+                <i class="right fas fa-angle-left"></i>
+              </a>
+              <ul class="nav nav-treeview ml-2">
+                <li class="nav-item">
+                  <a href="<?=BASEURL?>administration/tambah_guru" class="nav-link">
+                    <i class="nav-icon fas fa-graduation-cap"></i>
+                    <p>
+                      Guru
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="<?=BASEURL?>administration/tambah_siswa" class="nav-link">
+                    <i class="nav-icon fas fa-glasses"></i>
+                    <p>
+                      Siswa
+                    </p>
+                  </a>
+                </li>
+              </ul>
             </li>
           <?php endif; ?>
         </ul>

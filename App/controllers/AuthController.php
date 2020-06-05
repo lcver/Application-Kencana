@@ -16,7 +16,7 @@ class AuthController extends Controller
                     header('location:'.BASEURL.'guru');
                     break;
                 case 3:                    
-                    // header('location:'.BASEURL.'home');
+                    header('location:'.BASEURL.'administration');
                     break;
                 case 4:
                     header('location:'.BASEURL.'kasek');
@@ -63,9 +63,9 @@ class AuthController extends Controller
                     header('location:'.BASEURL.'guru');
                     break;
                 case 3:
-                    // $_SESSION['kencana_usersession'] = $res['id'];
-                    // $_SESSION['kencana_rolesession']  = $res['role'];
-                    // header('location:'.BASEURL.'home');
+                    $_SESSION['kencana_usersession'] = $res['id'];
+                    $_SESSION['kencana_rolesession']  = $res['role'];
+                    header('location:'.BASEURL.'administration');
                     break;
                 case 4:
                     $_SESSION['kencana_usersession'] = $res['id'];
