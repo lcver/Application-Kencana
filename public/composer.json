@@ -7,6 +7,7 @@
         }
     ],
     "require": {
-        "almasaeed2010/adminlte": "~3.0"
+        "almasaeed2010/adminlte": "~3.0",
+        "phpoffice/phpspreadsheet": "^1.13"
     }
 }
