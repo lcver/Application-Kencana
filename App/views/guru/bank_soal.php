@@ -52,7 +52,8 @@
                         </div>
                         <div class="card-body">
                             <!-- <div class="row"> -->
-                                <?php if(true):?>
+                                <?php if(isset($data['listSoal'])):?>
+                                <?php foreach ($data['listSoal'] as $d) : ?>
                                 <div class="col-md-12">
                                     <div class="info-box">
                                     <div class="custom-control custom-checkbox">
@@ -61,8 +62,13 @@
                                     </div>
                                         <div class="info-box-content">
                                             <a href="#soalview" class="elenkaSoalView" data-target-id="1">
-                                                <span class="text-lg">Matematika</span>
+                                                <span class="text-lg"><?=$d['mapel']?></span>
                                             </a>
+                                            <div class="row">
+                                                <?php foreach ($d['idKelas'] as $d) : ?>
+                                                <span class="text-bold bg-primary m-1 p-1 rounded" ><?=$d['kelas']?></span>
+                                                <?php endforeach; ?>
+                                            </div>
                                         </div>
                                         <!-- /.info-box-content -->
                                         <div class="info-box-more">
@@ -77,6 +83,7 @@
                                     </div>
                                     <!-- /.info-box -->
                                 </div>
+                                <?php endforeach;?>
                                 <?php else: ?>
                                     <span class="text-lg">Belum ada paket soal terupload</span>
                                 <?php endif; ?>
