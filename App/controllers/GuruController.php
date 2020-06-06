@@ -310,7 +310,7 @@ class GuruController extends Controller
                             }
                         }
                     } // endforeach
-
+                unlink($target);
             }else{
                 Flasher::setFlash('Gagal Upload! silakan hubungi Administrator', False);
             }
