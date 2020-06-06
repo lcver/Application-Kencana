@@ -35,6 +35,31 @@ class AdministrationController extends Controller
 
     public function create_siswa()
     {
+        $siswa = $this->model("SiswaModel");
+        $user = $this->model("UserModel");
+
+        $dataSiswa = [
+            "nis"=>$_POST['kencana_admin_nissiswa'],
+            "nama"=>$_POST['kencana_admin_namasiswa'],
+            "idKelas"=>$_POST['kencana_admin_kelassiswa']
+        ];
+
+        $dataUser = [
+            "username"=>$_POST['kencana_admin_nissiswa'],
+            "password"=>$_POST['kencana_admin_passwordsiswa'],
+            "role"=>1
+        ];
+
+        try{
+            $siswa->store($dataSiswa);
+            $user->store($dataUser);
+            Flasher::setFlash("Berhasil menambah siswa", true);
+        } catch(Exception $e)
+        {
+            Flasher::setFlash($e->getMessage(), false);
+        }
+
+        header("location:".BASEURL."administration/tambah_siswa");
     }
 
     public function create_guru()

@@ -2,7 +2,8 @@
     <h4>Tambah Siswa</h4>
     <div class="card w-75 mx-auto">
         <div class="card-body">
-            <form action="" method="post">
+            <?=Flasher::get()?>
+            <form action="<?=BASEURL?>administration/create_siswa" method="post">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="admin_createsiswa">Nama Lengkap</label>
@@ -10,7 +11,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Kelas</label>
-                        <select name="kencana_mapelfile" class="form-control">
+                        <select name="kencana_admin_kelassiswa" class="form-control">
                             <option value="_BLANK_">-- Pilih Kelas --</option>
                             <?php foreach ($data['kelas'] as $d) : ?>
                                 <option value="<?=$d['id']?>"><?=$d['kelas']?></option>
