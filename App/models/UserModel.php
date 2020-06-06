@@ -11,4 +11,10 @@ class UserModel extends Controller
                             ->get();
         return $res;
     }
+
+    public function store($data)
+    {
+        $result = Database::table("user")->insert($data);
+        return $result;
+    }
 }

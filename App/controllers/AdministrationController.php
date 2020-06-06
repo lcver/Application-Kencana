@@ -32,4 +32,39 @@ class AdministrationController extends Controller
         $data['kelas'] = $res;
         $this->view("admin/create_siswa",$data,"admin");
     }
+
+    public function create_siswa()
+    {
+    }
+
+    public function create_guru()
+    {
+        $guru = $this->model("GuruModel");
+        $user = $this->model("userModel");
+        
+        $dataGuru = [
+            "nama_pengguna"=>$_POST['kencana_admin_namapenggunaguru'],
+            "nama"=>$_POST['kencana_admin_namalengkapguru'],
+            "role"=>$_POST['kencana_admin_roleguru'],
+            "matapelajaran"=>serialize($_POST['kencana_admin_mapelguru']),
+            "kelas"=>serialize($_POST['kencana_admin_kelasguru'])
+        ];
+
+        $dataUser = [
+            "username"=>$_POST['kencana_admin_namapenggunaguru'],
+            "password"=>$_POST['kencana_admin_passwordguru'],
+            "role"=>2
+        ];
+
+        try{
+            $guru->store($dataGuru);
+            $user->store($dataUser);
+            Flasher::setFlash("Berhasil menambah guru", true);
+        } catch(Exception $e)
+        {
+            Flasher::setFlash($e->getMessage(), false);
+        }
+
+        header("location:".BASEURL."administration/tambah_guru");
+    }
 }
