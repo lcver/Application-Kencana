@@ -9,6 +9,7 @@ function layoutRoleGuru()
     {
         if($("#roleWalikelas").hasClass("d-none")){
             $("#roleWalikelas").removeClass("d-none")
+            $(".roleWalikelas").attr("name","kencana_admin_mapelguru[]")
         }
 
         if($("#roleMatapelajaran").hasClass("d-none") == false)
@@ -20,6 +21,7 @@ function layoutRoleGuru()
     {
         if($("#roleMatapelajaran").hasClass("d-none")){
             $("#roleMatapelajaran").removeClass("d-none")
+            $(".roleMatapelajaran").attr("name","kencana_admin_mapelguru[]")
         }
             
         if($("#roleWalikelas").hasClass("d-none") == false){
@@ -34,4 +36,9 @@ function layoutRoleGuru()
             $("#roleMatapelajaran").addClass("d-none");
         }
     }
+
+    var mp = $("#roleMatapelajaran").hasClass("d-none");
+    var wl = $("#roleWalikelas").hasClass("d-none");
+
+    console.log("mp :"+mp+"| wl :"+wl);
 }

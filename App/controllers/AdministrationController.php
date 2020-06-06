@@ -14,10 +14,10 @@ class AdministrationController extends Controller
         $mapel = $this->model("MapelModel");
         $kelas = $this->model("KelasModel");
 
-        $res = $mapel->show("lokal");
+        $res = $mapel->show("lokal","muatan");
         $data['mapel_lokal'] = $res;
         
-        $res = $mapel->show("umum");
+        $res = $mapel->show("umum","muatan");
         $data['mapel_umum'] = $res;
 
         $res = $kelas->create();
@@ -81,13 +81,29 @@ class AdministrationController extends Controller
             "role"=>2
         ];
 
+        // var_dump($dataGuru);die();
+
         try{
-            $guru->store($dataGuru);
-            $user->store($dataUser);
-            Flasher::setFlash("Berhasil menambah guru", true);
+            if ($guru->store($dataGuru)) {
+                if($user->store($dataUser))
+                {
+                    Flasher::setFlash("Berhasil menambah guru", true);
+                } else {
+                    throw new FailedtoCreateUserException("Failed to create user");
+                }
+            } else {
+                throw new FailedtoCreateGuruException("Failed to create guru");
+            }
+        } catch (FailedtoCreateUserException $e)
+        {
+            Flasher::setFlash($e->getMessage(), false);
+        } catch (FailedtoCreateGuruException $e)
+        {
+            Flasher::setFlash($e->getMessage(), false);
         } catch(Exception $e)
         {
             Flasher::setFlash($e->getMessage(), false);
+            die();
         }
 
         header("location:".BASEURL."administration/tambah_guru");
