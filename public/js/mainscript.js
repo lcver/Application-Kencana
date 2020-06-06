@@ -9,7 +9,8 @@ function layoutRoleGuru()
     {
         if($("#roleWalikelas").hasClass("d-none")){
             $("#roleWalikelas").removeClass("d-none")
-            $(".roleWalikelas").attr("name","kencana_admin_mapelguru[]")
+            $(".mapelWalikelas").attr("name","kencana_admin_mapelguru[]");
+            $(".kelasWalikelas").attr("name","kencana_admin_kelasguru[]");
         }
 
         if($("#roleMatapelajaran").hasClass("d-none") == false)
@@ -21,7 +22,8 @@ function layoutRoleGuru()
     {
         if($("#roleMatapelajaran").hasClass("d-none")){
             $("#roleMatapelajaran").removeClass("d-none")
-            $(".roleMatapelajaran").attr("name","kencana_admin_mapelguru[]")
+            $(".mapelMatapelajaran").attr("name","kencana_admin_mapelguru[]");
+            $(".kelasMatapelajaran").attr("name","kencana_admin_kelasguru[]");
         }
             
         if($("#roleWalikelas").hasClass("d-none") == false){

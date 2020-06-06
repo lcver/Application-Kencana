@@ -36,7 +36,7 @@
                                 <label>Pilih Matapelajaran</label>
                                 <?php foreach ($data['mapel_lokal'] as $d) : ?>
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" name="" class="custom-control-input roleMatapelajaran" id="customRadio<?=$d['id']?>" value="<?=$d['id']?>">
+                                    <input type="radio" name="" class="custom-control-input mapelMatapelajaran" id="customRadio<?=$d['id']?>" value="<?=$d['id']?>">
                                     <label for="customRadio<?=$d['id']?>" class="custom-control-label"><?=$d['mapel']?></label>
                                 </div>
                                 <?php endforeach; ?>
@@ -46,7 +46,7 @@
                                     <div class="row">
                                         <?php foreach ($data['kelas'] as $d) : ?>
                                         <div class="custom-control custom-checkbox mr-4">
-                                            <input type="checkbox" name="kencana_admin_kelasguru[]" class="custom-control-input" id="kelasMpCheckbox<?=$d['id']?>" value="<?=$d['id']?>" checked>
+                                            <input type="checkbox" name="" class="custom-control-input kelasMatapelajaran" id="kelasMpCheckbox<?=$d['id']?>" value="<?=$d['id']?>" checked>
                                             <label for="kelasMpCheckbox<?=$d['id']?>" class="custom-control-label"><?=$d['kelas']?></label>
                                         </div>
                                         <?php endforeach; ?>
@@ -58,7 +58,7 @@
                                     <label>Pilih Mata Pelajaran</label>
                                     <?php foreach($data['mapel_umum'] as $d) : ?>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="" class="custom-control-input roleWalikelas" id="mapelCheckbox<?=$d['id']?>" value="<?=$d['id']?>" checked>
+                                        <input type="checkbox" name="" class="custom-control-input mapelWalikelas" id="mapelCheckbox<?=$d['id']?>" value="<?=$d['id']?>" checked>
                                         <label for="mapelCheckbox<?=$d['id']?>" class="custom-control-label"><?=$d['mapel']?></label>
                                     </div>
                                     <?php endforeach; ?>
@@ -69,7 +69,7 @@
                                         <div class="row">
                                             <?php foreach ($data['kelas'] as $d) : ?>
                                             <div class="custom-control custom-checkbox mr-4">
-                                                <input type="checkbox" name="kencana_admin_kelasguru[]" class="custom-control-input" id="kelasWlCheckbox<?=$d['id']?>" value="<?=$d['id']?>">
+                                                <input type="checkbox" name="" class="custom-control-input kelasWalikelas" id="kelasWlCheckbox<?=$d['id']?>" value="<?=$d['id']?>">
                                                 <label for="kelasWlCheckbox<?=$d['id']?>" class="custom-control-label"><?=$d['kelas']?></label>
                                             </div>
                                             <?php endforeach; ?>
