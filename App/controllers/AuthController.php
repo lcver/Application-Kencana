@@ -61,7 +61,7 @@ class AuthController extends Controller
              */
             switch ($res['role']) {
                 case 1:
-                    $siswa = $siswa->show($res['username']);
+                    $siswa = $siswa->show($res['username'],'select_by_nis');
 
                     $_SESSION['kencana_namasession'] = $siswa['nama'];
                     $_SESSION['kencana_usersession'] = $siswa['id'];
