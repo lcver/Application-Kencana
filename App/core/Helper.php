@@ -21,7 +21,7 @@ class Helper
                 $response = !$num ? [$request] : $request;
 
         }else{
-            $response = null;
+            $response = [];
         }
         return $response;
     }
