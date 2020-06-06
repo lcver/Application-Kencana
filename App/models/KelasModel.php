@@ -9,4 +9,20 @@ class KelasModel extends Controller
         $result = Database::table('kelas')->get();
         return $result;
     }
+
+    public function show($data, $request)
+    {
+        switch ($request) {
+            case 'id':
+                $result = Database::table('kelas')
+                                    ->where('id',$data)
+                                    ->get();
+                break;
+            
+            default:
+                $result = [];
+                break;
+        }
+        return $result;
+    }
 }

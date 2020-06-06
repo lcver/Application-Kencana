@@ -16,15 +16,26 @@ class GuruController extends Controller
 
     public function bank_soal()
     {
-        $guru = $this->model("GuruModel")->show($_SESSION['kencana_usersession']);
-        var_dump($guru);die();
+        $guru = $this->model("GuruModel")->show($_SESSION['kencana_usersession'], 'id');
+        $mapel = $this->model("MapelModel");
+        $kelas = $this->model("KelasModel");
+
         // Data mapel
-        $res = $this->model("MapelModel")->create();
-        $data['mapel'] = $res;
+        $mapelGuru = unserialize($guru['matapelajaran']);
+        
+        for ($i=0; $i < count($mapelGuru); $i++) { 
+            $res = $mapel->show($mapelGuru[$i],'id');
+            $data['mapel'][] = $res;
+        }
+        // var_dump($data['mapel']);die();
 
         // Data kelas
-        $res = $this->model("KelasModel")->create();
-        $data['kelas'] = $res;
+        $kelasGuru = unserialize($guru['kelas']);
+
+        for ($i=0; $i < count($kelasGuru); $i++) { 
+            $res = $kelas->show($kelasGuru[$i],'id');
+            $data['kelas'][] = $res;
+        }
 
         $this->view("guru/bank_soal",$data,"admin");
     }

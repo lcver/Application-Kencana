@@ -9,11 +9,23 @@ class MapelModel extends Controller
         return $result;
     }
 
-    public function show($request)
+    public function show($data,$request)
     {
-        $result = Database::table("mapel")
-                                ->where("muatan",$request)
-                                ->get();
+        switch ($request) {
+            case 'muatan':
+                $result = Database::table("mapel")
+                                    ->where("muatan",$data)
+                                    ->get();
+                break;
+            case 'id':
+                $result = Database::table("mapel")
+                                    ->where("id",$data)
+                                    ->get();
+                break;
+            default:
+                $result = [];
+                break;
+        }
         return $result;
     }
 }
