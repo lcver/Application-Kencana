@@ -189,14 +189,133 @@ class GuruController extends Controller
     {
         $guru = $this->model("GuruModel")->show($_SESSION['kencana_usersession'], 'id');
         $kelas = $this->model("KelasModel");
+        $siswa = $this->model("SiswaModel");
         
         // Data kelas
         $kelasGuru = unserialize($guru['kelas']);
-
+        
         for ($i=0; $i < count($kelasGuru); $i++) { 
             $res = $kelas->show($kelasGuru[$i],'id');
             $data['kelas'][] = $res;
         }
+
+        for ($i=0; $i < count($kelasGuru) ; $i++) { 
+            $res = $siswa->show($kelasGuru[$i],'select_by_joining_kelas');
+            $data['listSiswa'][$kelasGuru[$i]] = Helper::null_checker($res);
+
+            // var_dump($data['listSiswa']);
+            
+        }
+        // die();
+
+
         $this->view("guru/kelas",$data,"admin");
+    }
+
+    public function generate_siswa()
+    {
+        // var_dump($_POST);
+        // var_dump($_FILES);
+        // die();
+        $temp_file = $_FILES['guru_list_siswa']['tmp_name'];
+        $type_file = $_FILES['guru_list_siswa']['type'];
+        $name_file = $_FILES['guru_list_siswa']['name'];
+
+        $name_file = explode('.', $name_file);
+        $name = $name_file[0].'_'.date("Ymdhisa").'.'.$name_file[1];
+        
+        if( $type_file == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || $type_file == "application/vnd.ms-excel" )
+        {   
+            $target = APPPATH."public/siswa/";
+            if(!is_dir($target))
+            {
+                if(!mkdir($target,0777))
+                    echo "failed create folder";
+            }
+
+            $target .= $name;
+
+            if(move_uploaded_file($temp_file,$target))
+            {
+                /**
+                 * persission
+                 * read, write, execute, rewrite
+                 */
+                chmod($target,0777);
+
+                /**
+                 * filter file type
+                 */
+                if($name_file[1]==="xlsx"):
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    // echo "xlsx";
+                elseif ($name_file[1]==="xls"):
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                    // echo "xls";
+                elseif ($name_file[1]==="csv"):
+                    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                    // echo "csv";
+                endif;
+
+                $Spreadsheet = $reader->load($target);
+                // var_dump($Spreadsheet);
+                
+                $sheetData = $Spreadsheet->getActiveSheet()->toArray();
+                // var_dump($sheetData);die();
+
+                $user = $this->model("UserModel");
+                $siswa = $this->model("SiswaModel");
+                
+                    foreach ($sheetData as $key => $value) {
+                        /**
+                         * get array key
+                         */
+                        if($key < 1){
+
+                            // mencari array values kunci
+                            $valueCount = count($value);
+                            // var_dump($valueCount);
+
+                            for ($i=0; $i < $valueCount; $i++) { 
+                                // NIS
+                                if(preg_match("/nis/i",$value[$i])) $nis = $i;
+                                // Nama
+                                if(preg_match("/nama/i",$value[$i])) $nama = $i;
+                                // Password
+                                if(preg_match("/password/i",$value[$i])) $password = $i;
+                            }
+                        }else{
+                            /**
+                             * get data from file
+                             */
+                            $dataSiswa = [
+                                'nis' => $value[$nis],
+                                'nama' => $value[$nama],
+                                'idKelas' => $_POST['guru_kelas_siswa'],
+                            ];
+
+                            $dataUser = [
+                                'username' => $value[$nis],
+                                'password' => $value[$password],
+                                'role' => 1
+                            ];
+
+                            if($result=$user->store($dataUser))
+                            {
+                                if($result=$siswa->store($dataSiswa)){
+                                    Flasher::setFlash('Berhasil import siswa', True);
+                                }
+                            } else {
+                                Flasher::setFlash('Gagal import siswa', False);
+                            }
+                        }
+                    } // endforeach
+
+            }else{
+                Flasher::setFlash('Gagal Upload! silakan hubungi Administrator', False);
+            }
+        }
+
+        header("location:".BASEURL."guru/list_kelas");
     }
 }

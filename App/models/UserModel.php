@@ -17,4 +17,17 @@ class UserModel extends Controller
         $result = Database::table("user")->insert($data);
         return $result;
     }
+
+    public function show($data, $request)
+    {
+        switch ($request) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
 }
