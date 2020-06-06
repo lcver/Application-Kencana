@@ -4,13 +4,27 @@ use App\Core\Controller;
 
 class SoalModel extends Controller
 {
-    public function show($request)
+    public function show($data, $request)
     {
-        $result = Database::table("soal_file")
-                                ->join("mapel")
-                                ->on("soal_file.idMapel","mapel.id and idGuru = $request")
-                                ->fetch(["soal_file.*","mapel.mapel"])
-                                ->get();
+        switch ($request) {
+            case 'view_guru':
+                $result = Database::table("soal_file")
+                                    ->join("mapel")
+                                    ->on("soal_file.idMapel","mapel.id and idGuru = $data")
+                                    ->fetch(["soal_file.*","mapel.mapel"])
+                                    ->get();
+                break;
+            case 'view_siswa':
+                $result = Database::table("soal_file")
+                                    ->join("mapel")
+                                    ->on("soal_file.idMapel","mapel.id")
+                                    ->fetch(["soal_file.*","mapel.mapel"])
+                                    ->get();
+                break;
+            default:
+                # code...
+                break;
+        }
 
         return $result;
     }

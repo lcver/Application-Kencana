@@ -65,6 +65,7 @@ class AuthController extends Controller
 
                     $_SESSION['kencana_namasession'] = $siswa['nama'];
                     $_SESSION['kencana_usersession'] = $siswa['id'];
+                    $_SESSION['kencana_siswakelas'] = $siswa['idKelas'];
                     $_SESSION['kencana_rolesession'] = $res['role'];
                     header('location:'.BASEURL);
                     break;
