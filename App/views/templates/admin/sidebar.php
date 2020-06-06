@@ -4,7 +4,7 @@
     <a href="#" class="brand-link">
       <img src="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">SD Kencana</span>
     </a>
 
     <!-- Sidebar -->
@@ -15,7 +15,7 @@
           <img src="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?= isset($_SESSION['kencana_namasession']) ? $_SESSION['kencana_namasession'] : "" ?></a>
         </div>
       </div>
 

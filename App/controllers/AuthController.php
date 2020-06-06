@@ -38,11 +38,19 @@ class AuthController extends Controller
 
     public function validation()
     {
+        $user = $this->model("UserModel");
+        $guru = $this->model("GuruModel");
+        $siswa = $this->model("SiswaModel");
+
         $dataSign['username'] = $_POST['kencana_username'];
         $dataSign['password'] = $_POST['kencana_password'];
-        $res = $this->model('UserModel')->authentication($dataSign);
+        
+        $res = $user->authentication($dataSign);
+
         if(!is_null($res))
         {
+
+            
             /**
              * ROLE
              * 1 = siswa
@@ -53,11 +61,17 @@ class AuthController extends Controller
              */
             switch ($res['role']) {
                 case 1:
+                    $siswa = $siswa->show($res['username']);
+
+                    $_SESSION['kencana_namasession'] = $siswa['nama'];
                     $_SESSION['kencana_usersession'] = $res['id'];
-                    $_SESSION['kencana_rolesession']  = $res['role'];
+                    $_SESSION['kencana_rolesession'] = $res['role'];
                     header('location:'.BASEURL);
                     break;
                 case 2:
+                    $guru = $guru->show($res['username']);
+
+                    $_SESSION['kencana_namasession'] = $guru['nama'];
                     $_SESSION['kencana_usersession'] = $res['id'];
                     $_SESSION['kencana_rolesession']  = $res['role'];
                     header('location:'.BASEURL.'guru');

@@ -16,9 +16,14 @@
         <!-- <ul class="navbar-nav"></ul> -->
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-          <li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <?=isset($_SESSION['kencana_namasession']) ? $_SESSION['kencana_namasession'] : ""?>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?=BASEURL?>auth/logout" class="nav-link">
-              <i class="fas fa-power-off"></i>
+              <i class="nav-icon fas fa-power-off"></i>
               Logout
             </a>
           </li>
