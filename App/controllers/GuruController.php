@@ -40,7 +40,7 @@ class GuruController extends Controller
         }
 
         // List Soal
-        $res = $soal->show($_SESSION['kencana_usersession']);
+        $res = $soal->show($_SESSION['kencana_usersession'],"view_guru");
         $res = Helper::null_checker($res);
         if(!is_null($res))
         {
