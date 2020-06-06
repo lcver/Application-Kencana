@@ -64,7 +64,7 @@ class AuthController extends Controller
                     $siswa = $siswa->show($res['username']);
 
                     $_SESSION['kencana_namasession'] = $siswa['nama'];
-                    $_SESSION['kencana_usersession'] = $res['id'];
+                    $_SESSION['kencana_usersession'] = $siswa['id'];
                     $_SESSION['kencana_rolesession'] = $res['role'];
                     header('location:'.BASEURL);
                     break;
@@ -72,7 +72,7 @@ class AuthController extends Controller
                     $guru = $guru->show($res['username']);
 
                     $_SESSION['kencana_namasession'] = $guru['nama'];
-                    $_SESSION['kencana_usersession'] = $res['id'];
+                    $_SESSION['kencana_usersession'] = $guru['id'];
                     $_SESSION['kencana_rolesession']  = $res['role'];
                     header('location:'.BASEURL.'guru');
                     break;
