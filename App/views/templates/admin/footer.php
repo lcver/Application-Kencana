@@ -33,6 +33,8 @@
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="<?=BASEURL?>vendor/almasaeed2010/adminlte/plugins/chart.js/Chart.min.js"></script>
+<!-- MainsJs -->
+<script src="<?=BASEURL?>js/mainscript.js"></script>
 <!-- Custom File Input -->
 <script type="text/javascript">
 $(document).ready(function () {

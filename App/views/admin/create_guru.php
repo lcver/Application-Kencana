@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select name="kencana_mapelfile" class="form-control" id="selectRoleGuru">
+                                    <select name="kencana_mapelfile" class="form-control" id="selectRoleGuru" onchange="layoutRoleGuru()">
                                         <option value="_BLANK_">-- Pilih Role --</option>
                                             <option value="1">Walikelas</option>
                                             <option value="2">Matapelajaran</option>
@@ -33,15 +33,35 @@
                             </div>
                         </div>
                         <div class="col-md-6" id="viewQuestRoleGuru">
-                            <div class="col-md-12">
-                                <div class="form-group" id="roleMatapelajaran">
-                                    <label>Pilih Matapelajaran</label>
-                                    <?php foreach ($data['mapel'] as $d) : ?>
-                                    <div class="custom-control custom-radio">
-                                        <input class="custom-control-input" type="radio" id="customRadio<?=$d['id']?>" name="customRadio">
-                                        <label for="customRadio<?=$d['id']?>" class="custom-control-label"><?=$d['mapel']?></label>
+                            <div class="form-group d-none" id="roleMatapelajaran">
+                                <label>Pilih Matapelajaran</label>
+                                <?php foreach ($data['mapel_lokal'] as $d) : ?>
+                                <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" type="radio" id="customRadio<?=$d['id']?>" name="customRadio">
+                                    <label for="customRadio<?=$d['id']?>" class="custom-control-label"><?=$d['mapel']?></label>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="d-none" id="roleWalikelas">
+                                <div class="form-group">
+                                    <label>Pilih Mata Pelajaran</label>
+                                    <?php foreach($data['mapel_umum'] as $d) : ?>
+                                    <div class="custom-control custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="mapelCheckbox<?=$d['id']?>" value="<?=$d['id']?>" checked>
+                                        <label for="mapelCheckbox<?=$d['id']?>" class="custom-control-label"><?=$d['mapel']?></label>
                                     </div>
                                     <?php endforeach; ?>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pilih Kelas</label>
+                                    <div class="row">
+                                    <?php foreach ($data['kelas'] as $d) : ?>
+                                    <div class="custom-control custom-checkbox mr-4">
+                                        <input class="custom-control-input" type="checkbox" id="kelasCheckbox<?=$d['id']?>" value="<?=$d['id']?>">
+                                        <label for="kelasCheckbox<?=$d['id']?>" class="custom-control-label"><?=$d['kelas']?></label>
+                                    </div>
+                                    <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -11,8 +11,17 @@ class AdministrationController extends Controller
 
     public function tambah_guru()
     {
-        $res = $this->model("MapelModel")->show("lokal");
-        $data['mapel'] = $res;
+        $mapel = $this->model("MapelModel");
+        $kelas = $this->model("KelasModel");
+
+        $res = $mapel->show("lokal");
+        $data['mapel_lokal'] = $res;
+        
+        $res = $mapel->show("umum");
+        $data['mapel_umum'] = $res;
+
+        $res = $kelas->create();
+        $data['kelas'] = $res;
 
         $this->view("admin/create_guru",$data,"admin");
     }

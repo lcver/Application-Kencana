@@ -14,7 +14,6 @@ class MapelModel extends Controller
         $result = Database::table("mapel")
                                 ->where("muatan",$request)
                                 ->get();
-
         return $result;
     }
 }
