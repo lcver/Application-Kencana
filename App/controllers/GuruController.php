@@ -9,6 +9,7 @@ class GuruController extends Controller
         if(!isset($_SESSION['kencana_usersession']) || $_SESSION['kencana_rolesession']!=2)
             header('location:'.BASEURL.'auth');
     }
+
     public function index()
     {
         $this->view("guru/index",[],"admin");
@@ -41,19 +42,22 @@ class GuruController extends Controller
         // List Soal
         $res = $soal->show($_SESSION['kencana_usersession']);
         $res = Helper::null_checker($res);
-
-        foreach ($res as $res) {
-            $kelasFile = unserialize($res['idKelas']);
-            $res['idKelas']=[];
-            for ($i=0; $i < count($kelasFile); $i++) { 
-                $soalKelas = $kelas->show($kelasFile[$i],'id');
-                $res['idKelas'][] = $soalKelas;
-                // var_dump($soalKelas);
+        if(!is_null($res))
+        {
+            foreach ($res as $res) {
+                $kelasFile = unserialize($res['idKelas']);
+                $res['idKelas']=[];
+                for ($i=0; $i < count($kelasFile); $i++) { 
+                    $soalKelas = $kelas->show($kelasFile[$i],'id');
+                    $res['idKelas'][] = $soalKelas;
+                    // var_dump($soalKelas);
+                }
+                $data['listSoal'][] = $res;
             }
-            $data['listSoal'][] = $res;
+        } else {
+            $data['listSoal'] = NULL;
         }
         // var_dump($data['listSoal']);die();
-
         $this->view("guru/bank_soal",$data,"admin");
     }
 
