@@ -69,8 +69,7 @@ class AuthController extends Controller
                     header('location:'.BASEURL);
                     break;
                 case 2:
-                    $guru = $guru->show($res['username']);
-
+                    $guru = $guru->show($res['username'],'nama_pengguna');
                     $_SESSION['kencana_namasession'] = $guru['nama'];
                     $_SESSION['kencana_usersession'] = $guru['id'];
                     $_SESSION['kencana_rolesession']  = $res['role'];

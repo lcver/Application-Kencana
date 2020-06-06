@@ -16,6 +16,8 @@ class GuruController extends Controller
 
     public function bank_soal()
     {
+        $guru = $this->model("GuruModel")->show($_SESSION['kencana_usersession']);
+        var_dump($guru);die();
         // Data mapel
         $res = $this->model("MapelModel")->create();
         $data['mapel'] = $res;
