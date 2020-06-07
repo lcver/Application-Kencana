@@ -76,3 +76,12 @@ $("#elenka_delete_confirm").on("click", function (e) {
         }
     });
 });
+
+// disclaimer siswa
+
+if($("#claim-terms").prop('checked'))
+{
+    $("#start-btn").removeAttr("disabled");
+}else {
+    $("#start-btn").attr("disabled","disabled");
+}
