@@ -10,7 +10,7 @@ class AuthController extends Controller
         {
             switch ($_SESSION['kencana_rolesession']) {
                 case 1:
-                    header('location:'.BASEURL);
+                    header('location:'.BASEURL.'home');
                     break;
                 case 2:
                     header('location:'.BASEURL.'guru');
@@ -67,7 +67,7 @@ class AuthController extends Controller
                     $_SESSION['kencana_usersession'] = $siswa['id'];
                     $_SESSION['kencana_siswakelas'] = $siswa['idKelas'];
                     $_SESSION['kencana_rolesession'] = $res['role'];
-                    header('location:'.BASEURL);
+                    header('location:'.BASEURL.'home');
                     break;
                 case 2:
                     $guru = $guru->show($res['username'],'nama_pengguna');
