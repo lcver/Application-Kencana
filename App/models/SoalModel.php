@@ -39,6 +39,15 @@ class SoalModel extends Controller
                                     ->fetch(["soal_file.*","mapel.mapel"])
                                     ->get();
                 break;
+            case 'view_lembarsoal':
+                $result = Database::table("soal_butir")
+                                    ->join("soal_file")
+                                    ->on("soal_butir.idFile","soal_file.id")
+                                    ->join("mapel")
+                                    ->on("soal_file.idMapel","mapel.id and soal_file.id = $data")
+                                    ->fetch(["soal_butir.*","mapel.mapel"])
+                                    ->get();
+                break;
             default:
                 $result=[];
                 break;

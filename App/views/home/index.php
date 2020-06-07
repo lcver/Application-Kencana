@@ -14,7 +14,9 @@
                                     <span><?=$dKelas['kelas']?></span>                                    
                                     <?php endforeach;?>
                                 </td>
-                                <td><button type="submit" class="btn btn-sm btn-primary">Mulai</button></td>
+                                <td>
+                                    <a href="<?=BASEURL?>soal/index/<?=$d['id']?>" class="btn btn-sm btn-primary" <?=$d['status']==2 ? "disabled" : "";?>>Mulai</a>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

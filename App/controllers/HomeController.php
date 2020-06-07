@@ -29,7 +29,6 @@ class HomeController extends Controller
                     $d['idKelas'][] = $kelasSoal;
                     $state = true;                    
                     // var_dump($d['idKelas']);
-
                 }
             }
             if($state)

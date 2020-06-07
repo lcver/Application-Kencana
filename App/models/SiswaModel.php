@@ -24,15 +24,30 @@ class SiswaModel extends Controller
                                     ->fetch(["siswa.*","kelas.kelas"])
                                     ->get();
                 break;
+            case 'siswa_lembarjawaban_check':
+                $result = Database::table("siswa_jawaban")
+                                    ->where('idSoalFile',"$data and idSiswa=$_SESSION[kencana_usersession]")
+                                    ->get();
+                 break;
             default:
                 # code...
                 break;
         }
         return $result;
     }
-    public function store($data)
+    public function store($data,$request)
     {
-        $result = Database::table("siswa")->insert($data);
+        switch ($request) {
+            case 'insert_siswa':
+                $result = Database::table("siswa")->insert($data);
+                break;
+            case 'insert_jawaban_siswa':
+                $result = Database::table("siswa_jawaban")->insert($data);
+                break;
+            default:
+                # code...
+                break;
+        }
         return $result;
     }
 }
