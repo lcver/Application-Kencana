@@ -44,3 +44,13 @@ function layoutRoleGuru()
 
     console.log("mp :"+mp+"| wl :"+wl);
 }
+
+function updateStatusSoal(id){
+    console.log("test");
+    var data = {id:id}
+    $.ajax({
+        type: "POST",
+        url: "status_soal",
+        data: data
+    });
+}

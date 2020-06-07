@@ -337,6 +337,14 @@ class GuruController extends Controller
 
     public function status_soal()
     {
-        
+        $soal = $this->model('SoalModel');
+        $status = ['status'=>2];
+        $res = $soal->show($_POST['id'], 'select_by_id');
+
+        if($res['status']==2) $status = ['status'=>1];
+
+        $res = $soal->update('id',$_POST['id'], $status);
+        var_dump($status);
+        var_dump($res);
     }
 }
