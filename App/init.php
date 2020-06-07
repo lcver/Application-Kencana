@@ -29,5 +29,21 @@ require APPPATH.'/public/vendor/autoload.php';
  * Autoload Class
  * @return class
  */
-require 'core/Autoload.php';
-$load = new App\Core\Autoload;
+// require 'core/Autoload.php';
+// $load = new App\Core\Autoload;
+spl_autoload_register(function ($class_name) {
+    $class_name = explode('\\', $class_name);
+
+    // Class folder name
+    $sub="";
+    $i = count($class_name)-2;
+    if( in_array('Core',$class_name) || $i < 0 ){
+        $sub = "/core";
+    }
+
+    // Class name
+    $class_name = end($class_name);
+    if(file_exists(__DIR__ . $sub .'/'. $class_name .'.php'))
+        require_once __DIR__ . $sub .'/'. $class_name .'.php';
+
+});

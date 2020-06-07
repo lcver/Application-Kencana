@@ -27,7 +27,7 @@ class App
             $this->controller = $this->controller.'Controller';
         }
         // var_dump($this->controller);
-
+        require CPATH.$this->controller.".php";
         $this->controller = new $this->controller;
 
         /**

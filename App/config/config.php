@@ -60,7 +60,7 @@ define('DBNAME','application_kencana');
 $app_path = preg_split('@/@', str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(dirname(__FILE__))), NULL, PREG_SPLIT_NO_EMPTY);
 $app_path = preg_replace('/config/', '', $app_path);
 $app_path = preg_replace('/App\\\/', '', $app_path);
-define('APPPATH', $app_path[0]);
+define('APPPATH', $_SERVER['DOCUMENT_ROOT']."/".$app_path[0]);
 
 /**
  * Vendor all path
