@@ -224,7 +224,7 @@ class GuruController extends Controller
         $name_file = explode('.', $name_file);
         $name = $name_file[0].'_'.date("Ymdhisa").'.'.$name_file[1];
         
-        if( $type_file == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || $type_file == "application/vnd.ms-excel" )
+        if( $name_file[1] == "xlsx" || $name_file[1] == "xls" || $name_file[1] == "csv")
         {   
             $target = APPPATH."public/siswa/";
             if(!is_dir($target))
@@ -302,7 +302,7 @@ class GuruController extends Controller
 
                             if($result=$user->store($dataUser))
                             {
-                                if($result=$siswa->store($dataSiswa)){
+                                if($result=$siswa->store($dataSiswa,"insert_siswa")){
                                     Flasher::setFlash('Berhasil import siswa', True);
                                 }
                             } else {
@@ -314,6 +314,8 @@ class GuruController extends Controller
             }else{
                 Flasher::setFlash('Gagal Upload! silakan hubungi Administrator', False);
             }
+        } else {
+            Flasher::setFlash('File harus berextensi xlsx, xls, csv', False);
         }
 
         header("location:".BASEURL."guru/list_kelas");
