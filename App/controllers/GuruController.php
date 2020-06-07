@@ -318,4 +318,25 @@ class GuruController extends Controller
 
         header("location:".BASEURL."guru/list_kelas");
     }
+
+    public function delete_soal($param)
+    {
+        if($_SESSION['kencana_rolesession'] == 2)
+        {
+            $soal = $this->model("SoalModel");
+
+            if($res=$soal->destroy($param[0]))
+            {
+                Flasher::setFlash("Berhasil menghapus",true);
+            } else {
+                Flasher::setFlash("Gagal menghapus",false);
+            }
+        }
+        header("location:".BASEURL."guru/bank_soal");
+    }
+
+    public function status_soal()
+    {
+        
+    }
 }

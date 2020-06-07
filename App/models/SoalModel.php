@@ -52,4 +52,16 @@ class SoalModel extends Controller
         }
         return $result;
     }
+
+    public function destroy($id)
+    {
+        // butir soal
+        $result = Database::table("soal_butir")
+                            ->where("idFile",$id)
+                            ->delete();
+        if($result)
+            $result = Database::table("soal_file")->where("id",$id)->delete(); // file soal
+        
+            return $result;
+    }
 }

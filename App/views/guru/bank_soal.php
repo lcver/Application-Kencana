@@ -72,7 +72,7 @@
                                         </div>
                                         <!-- /.info-box-content -->
                                         <div class="info-box-more">
-                                            <a class="btn btn-custom-delete elenka_delete_button" data-toggle="modal" data-target="#elenka_modal_delete" data-target-id="1">
+                                            <a href="<?=BASEURL?>guru/delete_soal/<?=$d['id']?>" class="btn btn-custom-delete" onClick="return confirm('Menghapus Soal?')" >
                                             <!-- <a class="btn btn-custom-delete text-muted elenkaDeleteButton" class="btn btn-custom-delete text-muted" data-toggle="modal" data-target="#modal-sm"> -->
                                                 <!-- <i class="fas fa-minus-circle"></i> -->
                                                 hapus
