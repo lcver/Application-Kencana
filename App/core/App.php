@@ -10,6 +10,7 @@ class App
     public function __construct()
     {
         $url = $this->set_url();
+        $url[0] = !is_null($url) ? $url : $this->controller;
         // var_dump($url);
 
         /**
