@@ -23,7 +23,7 @@ require 'config/config.php';
  * Autoload Vendor
  * @return vendor
  */
-require APPPATH.'/public/vendor/autoload.php';
+require APPPATH.'public/vendor/autoload.php';
 
 /**
  * Autoload Class
