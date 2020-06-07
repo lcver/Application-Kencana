@@ -54,3 +54,25 @@ function updateStatusSoal(id){
         data: data
     });
 }
+
+$(".kencana_soalview").on('click', function(e) {
+    var idTarget = $(this).attr('data-target-id');
+    $("#soalview").load('view_soal/'+idTarget);
+});
+
+// Hapus Soal
+$(".elenka_delete_button").on("click", function(e) {
+    var idTarget = $(this).attr('data-target-id');
+    $("#elenka_delete_confirm").attr('data-target-id',idTarget);
+});
+$("#elenka_delete_confirm").on("click", function (e) {
+    var idTarget = $(this).attr('data-target-id');
+    $.ajax({
+        type: "POST",
+        url: "delete_soal",
+        data: {id:idTarget},
+        success: function(){
+            location.reload()
+        }
+    });
+});

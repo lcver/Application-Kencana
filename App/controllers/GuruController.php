@@ -70,7 +70,7 @@ class GuruController extends Controller
         $name_file = explode('.', $name_file);
         $name = $name_file[0].'_'.date("Ymdhisa").'.'.$name_file[1];
 
-        if($type_file == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" || $type_file == "application/vnd.ms-excel")
+        if($name_file[1] == "xlsx" || $name_file[1] == "xls" || $name_file[1] == "csv")
         {
             $target = APPPATH."public/soal/";
             if(!is_dir($target))
@@ -159,7 +159,7 @@ class GuruController extends Controller
                                  * get data from file
                                  */
                                 $dataSoal = [
-                                    'idFile' => $soalFile,
+                                    'idFile' => $soalFile['id'],
                                     'soal' => $value[$pertanyaan],
                                     'a' => is_null($a) ? "" : $value[$a],
                                     'b' => is_null($b) ? "" : $value[$b],
@@ -176,7 +176,7 @@ class GuruController extends Controller
                 }
                 unlink($target);
             } else {
-                Flasher::setFlash("Tipe file harus xls,xlsx,cls", false);
+                Flasher::setFlash("Gagal upload file", false);
             }
         }else {
             echo "tipe file tidak diizinkan";
@@ -319,20 +319,41 @@ class GuruController extends Controller
         header("location:".BASEURL."guru/list_kelas");
     }
 
-    public function delete_soal($param)
+    public function view_soal($param)
+    {
+
+        $soal = $this->model("SoalModel");
+        /**
+         * mata pelajaran
+         * 
+         */
+        $res = $soal->show($param[0],'view_file_soal');
+        $data['listSoal'] = Helper::null_checker($res);
+
+        /**
+         * data soal
+         */
+        $res = $soal->show($param[0],'view_soal_guru');
+        $data['soal'] = Helper::null_checker($res);
+        
+        $this->view('guru/view_soal',$data,'single');
+    }
+
+    public function delete_soal()
     {
         if($_SESSION['kencana_rolesession'] == 2)
         {
             $soal = $this->model("SoalModel");
 
-            if($res=$soal->destroy($param[0]))
+            if($res=$soal->destroy($_POST['id']))
             {
                 Flasher::setFlash("Berhasil menghapus",true);
             } else {
                 Flasher::setFlash("Gagal menghapus",false);
             }
+            // var_dump($res);
         }
-        header("location:".BASEURL."guru/bank_soal");
+        // header("location:".BASEURL."guru/bank_soal");
     }
 
     public function status_soal()

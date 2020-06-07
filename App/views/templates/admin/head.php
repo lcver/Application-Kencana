@@ -15,4 +15,6 @@
   <link rel="stylesheet" href="<?=BASEURL?>vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Main style -->
+  <link rel="stylesheet" href="<?=BASEURL?>css/mainstyle.css">
 </head>
