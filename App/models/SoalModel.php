@@ -21,8 +21,14 @@ class SoalModel extends Controller
                                     ->fetch(["soal_file.*","mapel.mapel"])
                                     ->get();
                 break;
+            case 'select_by_id':
+                $result = Database::table("soal_file")
+                                    ->where("id",$data)
+                                    ->get();
+                break;
+
             default:
-                # code...
+                $result=[];
                 break;
         }
 
@@ -51,6 +57,15 @@ class SoalModel extends Controller
                 break;
         }
         return $result;
+    }
+
+    public function update($key,$value,$data)
+    {
+        $result = Database::table("soal_file")
+                            ->where($key,$value)
+                            ->update($data);
+        return $result;
+        
     }
 
     public function destroy($id)
