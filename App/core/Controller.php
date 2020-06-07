@@ -38,6 +38,7 @@ class Controller
      * @return Model
      */
     public function model(String $model){
+        $model = ucwords($model);
         require MPATH.$model.'.php';
         return new $model;
     }
