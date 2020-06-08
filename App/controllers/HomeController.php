@@ -12,6 +12,7 @@ class HomeController extends Controller
     
     public function index()
     {
+        $data = null;
         $soal=$this->model("SoalModel");
         $kelas=$this->model("KelasModel");
         $nilai=$this->model("NilaiModel");
