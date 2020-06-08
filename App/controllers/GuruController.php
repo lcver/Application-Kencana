@@ -93,9 +93,10 @@ class GuruController extends Controller
         $name_file = $_FILES['kencana_soalfile']['name'];
 
         $name_file = explode('.', $name_file);
-        $name = $name_file[0].'_'.date("Ymdhisa").'.'.$name_file[1];
+        $ext = end($name_file);
+        $name = $name_file[0].'_'.date("Ymdhisa").'.'.$ext;
 
-        if($name_file[1] == "xlsx" || $name_file[1] == "xls" || $name_file[1] == "csv")
+        if($ext == "xlsx" || $ext == "xls" || $ext == "csv")
         {
             $target = APPPATH."public/soal/";
             if(!is_dir($target))
