@@ -39,8 +39,13 @@ class SoalController extends Controller
 
         $soal = $this->model("SoalModel");
         $siswa = $this->model("SiswaModel");
+        $raw = [
+            "idFile" => $idFile,
+            "idSiswa" => $_SESSION['kencana_usersession']
+        ];
+
         
-        $res = $siswa->show($idFile,"siswa_lembarjawaban_check");
+        $res = $siswa->show($raw,"siswa_lembarjawaban_check");
         // var_dump($res);die();
         
             if($res!==NULL){

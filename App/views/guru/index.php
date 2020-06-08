@@ -17,13 +17,14 @@
                         <th>Kelas</th>
                     <tr>
                 </thead>
-                <tbody>
+                <!-- <tbody>
+                    
                     <tr>
                         <td>1</td>
                         <td>Lucky Adhitya</td>
                         <td>1-A</td>
                     </tr>
-                </tbody>
+                </tbody> -->
             </table>
         </div>
     </div>
