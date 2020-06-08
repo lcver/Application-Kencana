@@ -16,6 +16,8 @@ class HomeController extends Controller
         $kelas=$this->model("KelasModel");
 
         $listSoal = $soal->show($_SESSION['kencana_siswakelas'],"view_siswa");
+        $listSoal = Helper::null_checker($listSoal);
+        // var_dump($listSoal);die();
         foreach ($listSoal as $d) {
             $idKelas = unserialize($d['idKelas']);
 
@@ -31,8 +33,17 @@ class HomeController extends Controller
                     // var_dump($d['idKelas']);
                 }
             }
-            if($state)
-                $data['listSoal'][] = $d;
+            if($state){
+                /**
+                 * 1 Aktif
+                 * 2 Nonaktif
+                 */
+                if($d['status']==1){
+                    $data['listSoal'][] = $d;
+                } else {
+                    $data['listSoal'] = [];
+                }
+            }
         }
         // var_dump($listSoal);die();
 
