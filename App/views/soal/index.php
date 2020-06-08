@@ -41,6 +41,13 @@
                         <label for="customRadio<?=$no?>3" class="custom-control-label text-md"></label>
                         <span class="text-lg"><?=$d['c']?></span>
                     </div>
+                    <?php if(!is_null($d['d'])): ?>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" type="radio" id="customRadio<?=$no?>3" name="kencana_jawaban<?=$no?>" value="c">
+                        <label for="customRadio<?=$no?>3" class="custom-control-label text-md"></label>
+                        <span class="text-lg"><?=$d['d']?></span>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
