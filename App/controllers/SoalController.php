@@ -62,7 +62,7 @@ class SoalController extends Controller
                 "idSoalButir" => $_POST['kencana_idSoal'.$i],
                 "idSoalFile" => $_POST['kencana_idFile']
             ];
-            // $result = $siswa->store($data,"insert_jawaban_siswa");
+            $result = $siswa->store($data,"insert_jawaban_siswa");
         }
         if(true){
             header('location:'.BASEURL.'soal/hasil');
@@ -107,6 +107,11 @@ class SoalController extends Controller
         $res = $this->model('NilaiModel')->store($dataNilai);
         if($res===TRUE)
         {
+            /**
+             * destroy token soal
+             * 
+             */
+            unset($_SESSION['kencana_current_lembar_soal']);
             header('location:'.BASEURL.'home');
         }
         
@@ -120,13 +125,6 @@ class SoalController extends Controller
         $id = $_GET['url'];
         $id = explode('/',$_GET['url']);
         $id = end($id);
-
-        /**
-         * destroy token soal
-         * 
-         */
-        unset($_SESSION['elenka_token_soal']);
-
 
         /**
          * 
