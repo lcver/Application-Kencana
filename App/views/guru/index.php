@@ -11,29 +11,27 @@
                     </button>
                 </div>
             </div>
-            <table class="table table-striped">
-            <thead class=" thead-light">
-                <tr>
-                    <th style="width:15px;" >No</th>
-                    <th>Nama</th>
+            <table class="table">
+                <thead>
+                    <th>No</th>
                     <th>Kelas</th>
-                    <?php foreach ($data['listNilai'] as $d) : ?>
-                    <th><?=$d['mapel']?></th>
-                    <?php endforeach;?>
-                <tr>
-            </thead>
-            <tbody>
-            <?php //var_dump($data['listNilai']) ?>
-                <?php $no=0; foreach ($data['listNilai'] as $d) :$no++; ?>
+                    <th>Mapel</th>
+                    <th>Jumlah Peserta</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    <?php $no=0; foreach ($data['siswa'] as $d) : $no++;?>
                     <tr>
                         <td><?=$no?></td>
-                        <td><?=$d['nama']?></td>
-                        
                         <td><?=$d['kelas']?></td>
-                        <td><?=$d['nilai']?></td>
+                        <td><?=$d['mapel']?></td>
+                        <td><?=$d['jumlah']?></td>
+                        <td>
+                            <a href="http://">Lihatnilai</a>
+                        </td>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
+                    <?php endforeach ?>
+                </tbody>
             </table>
         </div>
     </div>

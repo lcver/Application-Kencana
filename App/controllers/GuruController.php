@@ -17,25 +17,28 @@ class GuruController extends Controller
         $guru = $this->model("GuruModel");
         $kelas = $this->model("KelasModel");
         $nilai = $this->model("NilaiModel");
+        $mapel = $this->model("MapelModel");
 
+        $Guru = $guru->show($_SESSION['kencana_usersession'],"id");
+        $kelasG = unserialize($Guru['kelas']);
+        $mapelG = unserialize($Guru['matapelajaran']);
 
-        // Kelas yang dimiliki guru
-        $kelas = $guru->show($_SESSION['kencana_usersession'],"id");
-        $ar_kelas = unserialize($kelas['kelas']);
-        $count = count($ar_kelas);
-        for ($i=0; $i < $count; $i++) { 
-            // echo $ar_kelas[$i];
-            $dSiswa = $nilai->show($ar_kelas[$i],"view_guru");
-            if(!is_null($dSiswa))
-            {
-                $resSiswa = null;
-                // result data siswa
-                $finalResSiswa = $dSiswa;
+        for ($i=0; $i < count($kelasG) ; $i++) { 
+            $dataKelas = $kelas->show($kelasG[$i],"id");
+            $dataSiswa = $siswa->show($kelasG[$i],"select_by_joining_kelas");
+
+            if(!is_null($dataSiswa)){
+                for ($j=0; $j < count($mapelG) ; $j++) { 
+                    $dataMapel = $mapel->show($mapelG[$j],"id");
+                    $data['siswa'][] = [
+                        'kelas'=>$dataKelas['kelas'],
+                        'mapel'=>$dataMapel['mapel'],
+                        'jumlah'=>count($dataSiswa)
+                    ];
+                }
             }
         }
-        $data['listNilai'] = Helper::null_checker($finalResSiswa);
-        // var_dump($finalResSiswa);
-        // die();
+        // var_dump($data['siswa']);
 
         $this->view("guru/index",$data,"admin");
     }
