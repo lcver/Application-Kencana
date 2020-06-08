@@ -66,7 +66,7 @@ class Database
     {
         $val=[];
         foreach ($data as $key => $value) {
-
+            $value = $this->mysqli->escape_string($value);
             if(!is_null($value)):
 
                 if(is_int($value)):
