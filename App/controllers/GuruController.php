@@ -31,6 +31,8 @@ class GuruController extends Controller
                 for ($j=0; $j < count($mapelG) ; $j++) { 
                     $dataMapel = $mapel->show($mapelG[$j],"id");
                     $data['siswa'][] = [
+                        'idKelas'=>$dataKelas['id'],
+                        'idMapel'=>$dataMapel['id'],
                         'kelas'=>$dataKelas['kelas'],
                         'mapel'=>$dataMapel['mapel'],
                         'jumlah'=>count($dataSiswa)
@@ -41,6 +43,23 @@ class GuruController extends Controller
         // var_dump($data['siswa']);
 
         $this->view("guru/index",$data,"admin");
+    }
+
+    public function nilaiUjian($param)
+    {        
+        $idKelas = $param[0];
+        $idMapel = $param[1];
+        $dataCond = [
+            'kelas'=>$idKelas,
+            'mapel'=>$idMapel
+        ];
+
+        $nilai = $this->model("NilaiModel");
+
+        $nilaiRekap = $nilai->show($dataCond,"nilai_rekap");
+        $data = Helper::null_checker($nilaiRekap);
+        // var_dump($nilaiRekap);
+        $this->view('guru/nilai_ujian',$data,'admin');
     }
 
     public function bank_soal()
@@ -400,3 +419,4 @@ class GuruController extends Controller
         // var_dump($res);
     }
 }
+
