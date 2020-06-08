@@ -40,6 +40,9 @@
                         <span class="clearfix <?=$d['kunciJawaban']==='a' ? 'text-bold text-success' : ''; ?>">a. <?=$d['a']?></span>
                         <span class="clearfix <?=$d['kunciJawaban']==='b' ? 'text-bold text-success' : ''; ?>">b. <?=$d['b']?></span>
                         <span class="clearfix <?=$d['kunciJawaban']==='c' ? 'text-bold text-success' : ''; ?>">c. <?=$d['c']?></span>
+                        <?php if(!is_null($d['d'])): ?>
+                        <span class="clearfix <?=$d['kunciJawaban']==='d' ? 'text-bold text-success' : ''; ?>">d. <?=$d['d']?></span>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="card-footer">
