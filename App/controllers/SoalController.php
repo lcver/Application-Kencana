@@ -48,10 +48,10 @@ class SoalController extends Controller
         $res = $siswa->show($raw,"siswa_lembarjawaban_check");
         // var_dump($res);die();
         
-            if($res!==NULL){
-                header('location:'.BASEURL."home");
-                return false;
-            }
+            // if($res!==NULL){
+            //     header('location:'.BASEURL."home");
+            //     return false;
+            // }
 
         $res = $soal->show($idFile,"view_soal_guru");
         $count = count($res);
@@ -62,103 +62,52 @@ class SoalController extends Controller
                 "idSoalButir" => $_POST['kencana_idSoal'.$i],
                 "idSoalFile" => $_POST['kencana_idFile']
             ];
-            $result = $siswa->store($data,"insert_jawaban_siswa");
+            // $result = $siswa->store($data,"insert_jawaban_siswa");
         }
-        if($result){
-            session_unset($_SESSION['kencana_current_lembar_soal']);
-            header("location:".BASEURL."home");
+        if(true){
+            header('location:'.BASEURL.'soal/hasil');
+            // session_unset($_SESSION['kencana_current_lembar_soal']);
+            // header("location:".BASEURL."home");
         }
 
     }
 
-    public function hasil($idPaket)
+    public function hasil()
     {
-        /**
-         * get id by link
-         */
-        $id = $idPaket;
-
         /**
          * check token
          * 
          */
-        if(!isset($_SESSION['elenka_token_soal'])) 
-            header('location:'.BASEURL);
+        if(!isset($_SESSION['kencana_current_lembar_soal'])) 
+            header('location:'.BASEURL.'home');
 
-        $result = $this->model('ButirSoalModel')->show($id);
-        // var_dump($result[0]);die();
+            
+        $siswa = $this->model("SiswaModel");
+        $result = $siswa->show($_SESSION['kencana_current_lembar_soal'],'matching_answer');
+        // var_dump($result);die();
 
         $totalSoal = 0;
         $benar = 0;
         foreach ($result as $d) { $totalSoal++;
-            if($d['jawaban'] == $d['kunciJawaban'])
+            if($d['jawaban'] == $d['kunci'])
             {
                 $benar++;
             }
-            // $idMapel = $d['idMatapelajaran'];
-            // $idSoal = $d['id'];
-        }
-        $nilai = $benar/$totalSoal*100;
-        // var_dump($nilai);
+            $idMapel = $d['idMapel'];
 
+        }
+        $nilai = floor($benar/$totalSoal*100);
+        var_dump($nilai);
         $dataNilai = [
-            'idPaketSoal'=>$id,
-            'idSiswa'    =>$_SESSION['elenka_usersession'],
-            'nilai'      =>$nilai
+            'idSiswa'=>$_SESSION['kencana_usersession'],
+            'idMapel'=> $idMapel,
+            'idFile'=>$_SESSION['kencana_current_lembar_soal'],
+            'nilai'=>$nilai
         ];
-        
-        
-        /**
-         * 
-         * store data into
-         * tampil nilai
-         */
-        $res = $this->model('PaketSoalModel')->show('soalsiswa',$id);
-        switch ($res['id']) {
-            case '1':
-                $keyNilai = 'ppkn';
-                break;
-            case '2':
-                $keyNilai = 'bindo';
-                break;
-            case '3':
-                $keyNilai = 'matematika';
-                break;
-            case '4':
-                $keyNilai = 'sbdp';
-                break;
-            case '5':
-                $keyNilai = 'pjok';
-                break;
-            case '6':
-                $keyNilai = 'ipa';
-                break;
-            case '7':
-                $keyNilai = 'ips';
-                break;
-        }
-        $data = [
-            'idSiswa'   => $_SESSION['elenka_usersession'],
-            'idKelas'   => $_SESSION['elenka_userkelas'],
-            'idBagian'  => $_SESSION['elenka_userbagian'],
-            $keyNilai   => $nilai
-        ];
-        
-        $checkTampilNilai = $this->model('TampilNilaiModel')->show($data['idSiswa']);
-
-        if($checkTampilNilai===NULL){
-            $res = $this->model('TampilNilaiModel')->store($data);
-        }else{
-            $res = $this->model('TampilNilaiModel')->update($checkTampilNilai['id'],$data);
-        }
-
-        if($res===TRUE){
-
-            $res = $this->model('NilaiModel')->store($dataNilai);
-            if($res===TRUE)
-            {
-                header('location:'.BASEURL.'soal/view_hasil/'.$id);
-            }
+        $res = $this->model('NilaiModel')->store($dataNilai);
+        if($res===TRUE)
+        {
+            header('location:'.BASEURL.'home');
         }
         
     }

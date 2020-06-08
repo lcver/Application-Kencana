@@ -36,6 +36,31 @@ class SiswaModel extends Controller
                                     ->fetch(["soal_file.*","soal_butir.kunci"])
                                     ->get();
                 break;
+            case 'matching_jawaban_kunci':
+                // $result = Database::table('soal_butir')
+                //                     ->join('siswa_jawaban')
+                //                     ->on('soal_butir.idFile','siswa_jawaban.idSoalFile')
+                $result = Database::table('soal_file')
+                        ->join('soal_butir')
+                        ->on('soal_file.id','soal_butir.idFile and soal_file.idGuru='.$data)
+                        ->join('siswa_jawaban')
+                        ->on('soal_file.id','siswa_jawaban.idSoalFile and siswa_jawaban.idSoalButir = soal_butir.id')
+                        ->fetch([
+                            'soal_file.idMapel',
+                            'soal_file.idGuru',
+                            'soal_butir.kunci',
+                            'siswa_jawaban.jawaban',
+                            'siswa_jawaban.idSiswa'])
+                        ->get();
+                break;
+            case 'matching_answer':
+                $result =  Database::table('soal_file')
+                                ->join('soal_butir')
+                                ->on('soal_file.id','soal_butir.idFile')
+                                ->join('siswa_jawaban')
+                                ->on('soal_file.id ='.$data.' and soal_butir.id','siswa_jawaban.idSoalButir and siswa_jawaban.idSiswa='.$_SESSION['kencana_usersession'])
+                                ->get();
+                break;
             default:
                 $result = [];
                 break;
