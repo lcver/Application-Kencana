@@ -2,10 +2,11 @@
     <div class="card col-md-8 mx-auto">
         <div class="card-body">
             <div class="col-md-12 text-center">
-                <h3>Jadwal Ujian</h3>
+                <h4>Jadwal Ujian</h4>
                 <div class="mt-2">
                     <table class="table align-items-center">
                         <tbody>
+                            <?php if(isset($data['listSoal'])): ?>
                             <?php foreach ($data['listSoal'] as $d) : ?>
                             <tr>
                                 <td><?=$d['mapel']?></td>
@@ -19,6 +20,9 @@
                                 </td>
                             </tr>
                             <?php endforeach; ?>
+                            <?php else:?>
+                                Selesai
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

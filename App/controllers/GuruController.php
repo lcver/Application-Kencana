@@ -16,18 +16,8 @@ class GuruController extends Controller
         $soal = $this->model("SoalModel");
         $guru = $this->model("GuruModel");
         $kelas = $this->model("KelasModel");
+        $nilai = $this->model("NilaiModel");
 
-        $resSiswa = $siswa->show($_SESSION['kencana_usersession'],"matching_jawaban_kunci");
-        // var_dump($resSiswa);
-
-        
-        
-        
-        // $kelas = $guru->show($_SESSION['kencana_usersession'],"id");
-        // $ar_kelas = unserialize($kelas['kelas']);
-        
-        // die();
-        $this->view("guru/index",$data,"admin");
 
         // Kelas yang dimiliki guru
         $kelas = $guru->show($_SESSION['kencana_usersession'],"id");
@@ -35,50 +25,19 @@ class GuruController extends Controller
         $count = count($ar_kelas);
         for ($i=0; $i < $count; $i++) { 
             // echo $ar_kelas[$i];
-            $dSiswa = $siswa->show($ar_kelas[$i],"select_by_joining_kelas");
+            $dSiswa = $nilai->show($ar_kelas[$i],"view_guru");
             if(!is_null($dSiswa))
             {
                 $resSiswa = null;
                 // result data siswa
-                $finalResSiswa[] = $dSiswa;
+                $finalResSiswa = $dSiswa;
             }
         }
+        $data['listNilai'] = Helper::null_checker($finalResSiswa);
         // var_dump($finalResSiswa);
+        // die();
 
-
-
-        $idFile = $soal->show($_SESSION['kencana_usersession'],"view_guru");
-        foreach ($idFile as $d) {
-            foreach ($finalResSiswa as $dSiswaSekelas) {
-
-                foreach ($dSiswaSekelas as $dSiswa) {
-                    $dataCond = [
-                        "idFile" => $d['id'],
-                        "idSiswa" => $dSiswa['id']
-                    ];
-                    $jawaban = $siswa->show($dataCond,"siswa_lembarjawaban_check");
-                    foreach ($jawaban as $dJawaban) {
-                        // var_dump($dJawaban);
-                        echo "<br><br>";
-                    }
-                }
-            }
-
-
-
-            $butir = $soal->show($d['id'],"view_soal_guru");
-            $resSoal = null;
-            foreach ($butir as $dButir) {
-                $resSoal[] = $dButir['kunci'];
-            }
-            
-            // result kunci jawaban
-            $finalResSoal[] = $resSoal;
-        }
-        // var_dump($finalResSoal);        
-        
-
-        // $this->view("guru/index",[],"admin");
+        $this->view("guru/index",$data,"admin");
     }
 
     public function bank_soal()

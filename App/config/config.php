@@ -48,7 +48,8 @@ define('BASEURL', $base_url);
 define('DBHOST','localhost');
 define('DBUSER','root');
 define('DBPASS','Lucver1092');
-define('DBNAME','application_sdkencana');
+// define('DBNAME','application_sdkencana');
+define('DBNAME','backup_test');
 
 /**
  * APP PATH

@@ -18,6 +18,17 @@ class NilaiModel extends Controller
                                     ->where('idFile',$data.' and idSiswa='.$_SESSION['kencana_usersession'])
                                     ->get();
                 break;
+            case 'view_guru':
+                $result = Database::table('siswa')
+                                    ->join('kelas')
+                                    ->on('siswa.idKelas','kelas.id and siswa.idKelas='.$data)
+                                    ->join('siswa_nilai')
+                                    ->on('siswa.id','siswa_nilai.idSiswa')
+                                    ->join('mapel')
+                                    ->on('siswa_nilai.idMapel','mapel.id')
+                                    ->fetch(['siswa.*','siswa_nilai.nilai','mapel.mapel','kelas.kelas'])
+                                    ->get();
+                break;
             default:
                 $result = [];
                 break;

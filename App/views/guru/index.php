@@ -1,30 +1,39 @@
 <div class="pt-4">
-    <div class="card overflow-auto ">
+    <div class="card">
         <div class="card-body">
-            <div class="menu text-right">
-                <button class="btn btn-custom-delete text-blue">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-                <button class="btn btn-custom-delete text-red">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button class="btn btn-custom-delete text-blue">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="btn btn-custom-delete text-red">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
             </div>
             <table class="table table-striped">
-                <thead class=" thead-light">
+            <thead class=" thead-light">
+                <tr>
+                    <th style="width:15px;" >No</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <?php foreach ($data['listNilai'] as $d) : ?>
+                    <th><?=$d['mapel']?></th>
+                    <?php endforeach;?>
+                <tr>
+            </thead>
+            <tbody>
+            <?php //var_dump($data['listNilai']) ?>
+                <?php $no=0; foreach ($data['listNilai'] as $d) :$no++; ?>
                     <tr>
-                        <th style="width:15px;" >No</th>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                    <tr>
-                </thead>
-                <!-- <tbody>
-                    
-                    <tr>
-                        <td>1</td>
-                        <td>Lucky Adhitya</td>
-                        <td>1-A</td>
+                        <td><?=$no?></td>
+                        <td><?=$d['nama']?></td>
+                        
+                        <td><?=$d['kelas']?></td>
+                        <td><?=$d['nilai']?></td>
                     </tr>
-                </tbody> -->
+                <?php endforeach; ?>
+            </tbody>
             </table>
         </div>
     </div>
