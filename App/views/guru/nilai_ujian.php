@@ -16,19 +16,15 @@
                     <th>No</th>
                     <th>Kelas</th>
                     <th>Mapel</th>
-                    <th>Jumlah Peserta</th>
-                    <th>Action</th>
+                    <th>Nilai</th>
                 </thead>
                 <tbody>
-                    <?php $no=0; foreach ($data['siswa'] as $d) : $no++;?>
+                    <?php $no=0; foreach ($data as $d) : $no++;?>
                     <tr>
                         <td><?=$no?></td>
-                        <td><?=$d['kelas']?></td>
+                        <td><?=$d['nama']?></td>
                         <td><?=$d['mapel']?></td>
-                        <td><?=$d['jumlah']?></td>
-                        <td>
-                            <a href="<?=BASEURL?>guru/nilaiUjian/<?=$d['idKelas']?>/<?=$d['idMapel']?>" class="btn btn-primary">Lihat nilai</a>
-                        </td>
+                        <td><?=$d['nilai']?></td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>
