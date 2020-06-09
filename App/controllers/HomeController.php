@@ -21,13 +21,17 @@ class HomeController extends Controller
         $listSoal = Helper::null_checker($listSoal);
         // var_dump($listSoal);die();
         foreach ($listSoal as $d) {
-            // $checkNilai = $nilai->show($d['id'],"filter_nilai");
-            // if(is_null($checkNilai))
-            // {
+            // echo "id FIle : ".$d['id'];
+            // echo "id user : ".$_SESSION['kencana_usersession'];
+            $checkNilai = $nilai->show($d['id'],"filter_nilai");
+            if(is_null($checkNilai))
+            {
+                // var_dump($checkNilai);
                 $idKelas = unserialize($d['idKelas']);
                 $d['idKelas']=[];
                 $state=false;
                 for ($i=0; $i < count($idKelas) ; $i++) {
+                    // if($_SESSION['kencana_siswakelas']==$idKelas[$i])
                     if(in_array($_SESSION['kencana_siswakelas'], $idKelas))
                     {
                         $kelasSoal = $kelas->show($idKelas[$i],'id');
@@ -48,7 +52,7 @@ class HomeController extends Controller
                         $data['listSoal'] = [];
                     }
                 }   
-            // }
+            }
         }
         // var_dump($listSoal);die();
 

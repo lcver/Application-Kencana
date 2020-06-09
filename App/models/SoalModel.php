@@ -64,7 +64,7 @@ class SoalModel extends Controller
                 {
                     $res = Database::table("soal_file")
                                         ->orderBy("id","desc limit 1")
-                                        ->fetch(["id"])
+                                        ->fetch(["soal_file.id"])
                                         ->get();
                     return $res;
                 }

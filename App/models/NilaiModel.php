@@ -15,7 +15,9 @@ class NilaiModel extends Controller
         switch ($request) {
             case 'filter_nilai':
                 $result = Database::table('siswa_nilai')
-                                    ->where('idFile',$data." and idSiswa='".$_SESSION['kencana_usersession']."'")
+                                    // ->where('idFile',$data." and idSiswa='".$_SESSION['kencana_usersession']."'")
+                                    ->where('idSiswa',$_SESSION['kencana_usersession']."' and idFile='$data")
+                                    ->fetch(['id'])
                                     ->get();
                 break;
             case 'nilai_rekap':
