@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <?php $no=0; foreach ($data['soal'] as $d) : $no++;?>
             <div class="card">
-                <form action="<?=BASEURL?>admin/arsip_upload_pict" method="post" enctype="multipart/form-data">
+                <form action="<?=BASEURL?>guru/add_asset_soal" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <h5 class="clearfix soal-pertanyaan"><span class="soal-nomor"><?=$no?></span><?=$d['soal']?>?</h5>
                     <?php if($d['gambar']==NULL):?>
@@ -56,3 +56,8 @@
     <!-- /.card-body -->
 </div>
 <!-- /.card -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+</script>

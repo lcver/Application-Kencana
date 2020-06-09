@@ -62,6 +62,12 @@ class GuruController extends Controller
         $this->view('guru/nilai_ujian',$data,'admin');
     }
 
+    public function add_asset_soal()
+    {
+        var_dump($_POST);
+        var_dump($_FILES);
+    }
+
     public function bank_soal()
     {
         $guru = $this->model("GuruModel")->show($_SESSION['kencana_usersession'], 'id');
