@@ -40,7 +40,7 @@ class GuruController extends Controller
                 }
             }
         }
-        // var_dump($data['siswa']);
+        // var_dump($data['siswa']);die();
 
         $this->view("guru/index",$data,"admin");
     }
@@ -58,7 +58,7 @@ class GuruController extends Controller
 
         $nilaiRekap = $nilai->show($dataCond,"nilai_rekap");
         $data = Helper::null_checker($nilaiRekap);
-        // var_dump($nilaiRekap);
+        var_dump($nilaiRekap);die();
         $this->view('guru/nilai_ujian',$data,'admin');
     }
 
@@ -66,6 +66,34 @@ class GuruController extends Controller
     {
         var_dump($_POST);
         var_dump($_FILES);
+        $id = $_POST['kencana_idSoal'];
+        $idPaketSoal = $_POST['kencana_idFile'];
+
+        $extension = explode('.',$_FILES['kencana_upload'.$id]['name']);
+        $extension = end($extension);
+        $name_file = $id."_".$idPaketSoal.'.'.$extension;
+        $size = $_FILES['kencana_uploadgambar'.$id]['size'];
+
+        $target_file = '../public_html/img/soal_gambar/'.$name_file;
+        // var_dump($_FILES);die();
+
+        if($size < 2000000){
+            $tmp = $_FILES['elenka_uploadgambar'.$id]['tmp_name'];
+            if(move_uploaded_file($tmp,$target_file))
+            {
+                $data = ['gambar'=>$name_file];
+                if($this->model('ButirSoalModel')->update($id,$data))
+                {
+                    Flasher::setFlash('Berhasil mengupload gambar', true);
+                }
+            }else{
+                Flasher::setFlash('Gagal mengupload gambar', false);
+            }
+        }else{
+            Flasher::setFlash('Ukuran gambar terlalu besar', false);
+        }
+        header('location:'.BASEURL.'admin/arsip');
+
     }
 
     public function bank_soal()
