@@ -48,10 +48,10 @@ class SoalController extends Controller
         $res = $siswa->show($raw,"siswa_lembarjawaban_check");
         // var_dump($res);die();
         
-            // if($res!==NULL){
-            //     header('location:'.BASEURL."home");
-            //     return false;
-            // }
+            if($res!==NULL){
+                header('location:'.BASEURL."home");
+                return false;
+            }
 
         $res = $soal->show($idFile,"view_soal_guru");
         $count = count($res);
