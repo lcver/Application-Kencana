@@ -17,7 +17,7 @@ class SoalModel extends Controller
             case 'view_siswa':
                 $result = Database::table("soal_file")
                                     ->join("mapel")
-                                    ->on("soal_file.idMapel","mapel.id and soal_file.status=1")
+                                    ->on("soal_file.idMapel","mapel.id")
                                     ->fetch(["soal_file.*","mapel.mapel"])
                                     ->get();
                 break;
