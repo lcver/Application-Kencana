@@ -31,30 +31,31 @@ class HomeController extends Controller
                 $d['idKelas']=[];
                 $state=false;
                 for ($i=0; $i < count($idKelas) ; $i++) {
-                    // if($_SESSION['kencana_siswakelas']==$idKelas[$i])
-                    if(in_array($_SESSION['kencana_siswakelas'], $idKelas))
+                    if($_SESSION['kencana_siswakelas']==$idKelas[$i])
+                    // if(in_array($_SESSION['kencana_siswakelas'], $idKelas))
                     {
                         $kelasSoal = $kelas->show($idKelas[$i],'id');
 
                         $d['idKelas'][] = $kelasSoal;
                         $state = true;                    
-                        // var_dump($d['idKelas']);
+                        // var_dump($idKelas);
                     }
                 }
                 if($state){
+                    // echo "ada kelas";
                     /**
                      * 1 Aktif
                      * 2 Nonaktif
                      */
                     if($d['status']==1){
+                        // echo "ada status";
                         $data['listSoal'][] = $d;
-                    } else {
-                        $data['listSoal'] = [];
                     }
+                    // echo "<br>";
                 }   
             }
         }
-        // var_dump($listSoal);die();
+        // var_dump($data['listSoal']);die();
 
         $this->view('home/index',$data);
     }
