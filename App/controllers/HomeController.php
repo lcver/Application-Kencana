@@ -21,9 +21,9 @@ class HomeController extends Controller
         $listSoal = Helper::null_checker($listSoal);
         // var_dump($listSoal);die();
         foreach ($listSoal as $d) {
-            $checkNilai = $nilai->show($d['id'],"filter_nilai");
-            if(is_null($checkNilai))
-            {
+            // $checkNilai = $nilai->show($d['id'],"filter_nilai");
+            // if(is_null($checkNilai))
+            // {
                 $idKelas = unserialize($d['idKelas']);
                 $d['idKelas']=[];
                 $state=false;
@@ -48,7 +48,7 @@ class HomeController extends Controller
                         $data['listSoal'] = [];
                     }
                 }   
-            }
+            // }
         }
         // var_dump($listSoal);die();
 

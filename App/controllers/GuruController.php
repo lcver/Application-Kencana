@@ -58,7 +58,7 @@ class GuruController extends Controller
 
         $nilaiRekap = $nilai->show($dataCond,"nilai_rekap");
         $data = Helper::null_checker($nilaiRekap);
-        var_dump($nilaiRekap);die();
+        // var_dump($data);die();
         $this->view('guru/nilai_ujian',$data,'admin');
     }
 

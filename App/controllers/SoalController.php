@@ -45,13 +45,13 @@ class SoalController extends Controller
         ];
 
         
-        $res = $siswa->show($raw,"siswa_lembarjawaban_check");
+        // $res = $siswa->show($raw,"siswa_lembarjawaban_check");
         // var_dump($res);die();
         
-            if($res!==NULL){
-                header('location:'.BASEURL."home");
-                return false;
-            }
+            // if($res!==NULL){
+            //     header('location:'.BASEURL."soal/index/$idFile");
+            //     return false;
+            // }
 
         $res = $soal->show($idFile,"view_soal_guru");
         $count = count($res);
@@ -64,7 +64,7 @@ class SoalController extends Controller
             ];
             $result = $siswa->store($data,"insert_jawaban_siswa");
         }
-        if(true){
+        if($result){
             header('location:'.BASEURL.'soal/hasil');
             // session_unset($_SESSION['kencana_current_lembar_soal']);
             // header("location:".BASEURL."home");
