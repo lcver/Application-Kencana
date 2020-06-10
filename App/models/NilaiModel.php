@@ -26,6 +26,7 @@ class NilaiModel extends Controller
                                     ->on('siswa_nilai.idSiswa','siswa.id and siswa.idKelas='.$data['kelas'])
                                     ->join('mapel')
                                     ->on('siswa_nilai.idMapel','mapel.id and siswa_nilai.idMapel='.$data['mapel'])
+                                    ->orderBy("siswa.nama","asc, siswa_nilai.id asc")
                                     ->get();
                 break;
             case 'view_guru':
